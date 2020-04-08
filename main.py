@@ -1,8 +1,10 @@
 import pygame
 
+class Player(object):
+    def move(self):
+        pass
 
 pygame.init()
-
 
 display_width = 800
 display_height = 600
@@ -36,6 +38,22 @@ while not crashed:
         
     pygame.display.update()
     clock.tick(60)
+
+    keys = pygame.key.get_pressed()
+
+    cont = 0
+    for i in keys:
+        if i == 1: print(cont)
+        else: cont += 1
+
+    if keys[100]: #letra d
+        x +=1
+    if keys[97]: #letra a
+        x -= 1
+    if keys[119]: #letra w
+        y -=1
+    if keys[115]: #letra s
+        y += 1
 
 pygame.quit()
 quit()
