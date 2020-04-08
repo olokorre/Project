@@ -13,6 +13,13 @@ class Player(object):
         if keys[115]: self.y += 1 #letra S
         gameDisplay.blit(self.spritePlayer, (self.x,self.y))
 
+class Wall(object):
+    def __init__(self, img):
+        self.spriteWall = pygame.image.load(img)
+
+    def montar(self, x, y):
+        gameDisplay.blit(self.spriteWall, (x ,y))
+
 pygame.init()
 
 display_width = 800
@@ -28,6 +35,7 @@ clock = pygame.time.Clock()
 crashed = False
 
 Jogador = Player("assets/img/spritePlayer.png", display_width, display_height)
+Parede = Wall("assets/img/t6erra.png")
 
 x =  (display_width * 0.45)
 y = (display_height * 0.8)
@@ -39,6 +47,7 @@ while not crashed:
     if pygame.key.get_focused(): keys = pygame.key.get_pressed()
     gameDisplay.fill(white)
     Jogador.mover(keys)
+    Parede.montar(500, 500)
 
         
     pygame.display.update()
