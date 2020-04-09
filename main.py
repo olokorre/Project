@@ -4,16 +4,18 @@ import random
 class Player(object):
     def __init__(self, img, largura, altura):
         self.spritePlayer = pygame.image.load(img)
+        self.hitBox = pygame.Rect(32, 32, 32, 32)
         self.x =  (largura * 0.45)
         self.y = (altura * 0.8)
 
-    def mover(self, tecla):
-        if keys[275]: self.x += 3 #letra D
-        elif keys[276]: self.x -= 3 #letra A
-        if keys[273]: self.y -=3 #letra W
-        elif keys[274]: self.y += 3 #letra S
-        self.teleportar()
-        gameDisplay.blit(self.spritePlayer, (self.x,self.y))
+    def mover(self, tecla, x, y):
+        if not self.hitBox.collidepoint(x, y):
+            if keys[275]: self.x += 3 #letra D
+            elif keys[276]: self.x -= 3 #letra A
+            if keys[273]: self.y -=3 #letra W
+            elif keys[274]: self.y += 3 #letra S
+            self.teleportar()
+            gameDisplay.blit(self.spritePlayer, (self.x,self.y))
     
     def teleportar(self):
         if self.x >= 800: self.x = 0
@@ -65,7 +67,7 @@ while not crashed:
         for l in range(0, 600, 64):
             Chao.montar(i ,l)
     
-    Jogador.mover(keys)
+    Jogador.mover(keys, paredeX, paredeY)
     Parede.montar(paredeX, paredeY)
         
     pygame.display.update()
