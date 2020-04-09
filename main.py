@@ -9,13 +9,13 @@ class Player(object):
         self.y = (altura * 0.8)
 
     def mover(self, tecla, x, y):
-        if not self.hitBox.collidepoint(x, y):
-            if keys[275]: self.x += 3 #letra D
-            elif keys[276]: self.x -= 3 #letra A
-            if keys[273]: self.y -=3 #letra W
-            elif keys[274]: self.y += 3 #letra S
-            self.teleportar()
-            gameDisplay.blit(self.spritePlayer, (self.x,self.y))
+        # if not self.hitBox.collidepoint(x, y):
+        if keys[275]: self.x += 3 #letra D
+        elif keys[276]: self.x -= 3 #letra A
+        if keys[273]: self.y -=3 #letra W
+        elif keys[274]: self.y += 3 #letra S
+        self.teleportar()
+        gameDisplay.blit(self.spritePlayer, (self.x,self.y))
     
     def teleportar(self):
         if self.x >= 800: self.x = 0
